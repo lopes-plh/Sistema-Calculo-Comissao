@@ -1,0 +1,80 @@
+<meta charset="UTF-8">
+
+<b>SISTEMA DE CÁLCULO DE COMISSÃO.</b>
+<br>
+<br>
+<script>
+
+	function print(frase) {
+		document.write(frase);
+		document.write("<br><br>");
+	}
+
+	var cpfDigitado = [];
+	var license = ["Citrix","Akamai","Palo Alto","Darktrace","Nutanix"];
+
+	var cpf = prompt("Vamos começar, por favor digite seu CPF.");
+	cpfDigitado.push(cpf);
+
+	var salario = parseInt(prompt("Agora digite seu sálario fixo."));
+	var fabricante = prompt("Qual o fabricante das licenças vendidas?")
+	var existe = false;
+
+	for(var i = 0; i < license.length; i++) {
+		if(fabricante == license[i]) {
+			existe = true
+
+			var quantidade = parseInt(prompt("Qual a quantidade de licenças " + fabricante + " vendidas ?"))
+			var valor = parseInt(prompt("Qual o valor unitário das licenças ?"))
+
+			var valorTotal = (quantidade * valor);
+			var condição1 = ((valorTotal / 100) * 10)
+			var condição2 = ((valorTotal / 100) * 5)
+			var condição3 = ((valorTotal / 100) * 30)
+			var condição4 = ((valorTotal / 100) * 20)
+			
+			if(salario <= 1000) {
+				print("CPF " + cpfDigitado);
+				print(quantidade + " Licenças " + fabricante + " no valor de R$ " + valor + " reais.");
+				print("Valor da Comissão é de R$ " + condição1 + " reais.");
+				print("Salário fixo de R$ " + salario + " reais.");
+				print("Total a receber = R$ " + (salario + condição1) + " reais.");	
+			}
+
+			if(salario > 1000 && salario < 3000) {
+				print("CPF " + cpfDigitado);
+				print(quantidade + " Licenças " + fabricante + " no valor de R$ " + valor + " reais.");
+				print("Valor da Comissão é de R$ " + condição2 + " reais.");
+				print("Salário fixo de R$ " + salario + " reais.");
+				print("Total a receber = R$ " + (salario + condição2) + " reais.");
+			}
+
+			if(salario == 0 && quantidade > 50) {
+				print("CPF " + cpfDigitado);
+				print(quantidade + " Licenças " + fabricante + " no valor de R$ " + valor + " reais.");
+				print("Valor da Comissão é de R$ " + condição3 + " reais.");
+				print("Salário fixo de R$ " + salario + " reais.");
+				print("Total a receber = R$ " + (salario + condição3) + " reais.");
+			}
+
+			if(salario == 0 && quantidade < 50) {
+				print("CPF " + cpfDigitado);
+				print(quantidade + " Licenças " + fabricante + " no valor de R$ " + valor + " reais.");
+				print("Valor da Comissão é de R$ " + condição4 + " reais.");
+				print("Salário fixo de R$ " + salario + " reais.");
+				print("Total a receber = R$ " + (salario + condição4) + " reais.");
+			}
+
+			break;		
+		}
+	
+	}	
+
+	if(existe == false) {
+		alert("FABRICANTE NÃO ENCONTRADO.");
+		print("Por favor, digite um fabricante válido.");
+	}
+
+</script>
+
+<input type="button" value="OK" onClick="window.location.reload()"> 
